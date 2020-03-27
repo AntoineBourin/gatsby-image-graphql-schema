@@ -5,7 +5,7 @@ exports.createResolvers = (
   configOptions
 ) => {
   const { createNode } = actions
-  const { imageNames, schemaTypeName } = configOptions
+  const { imageNames, schemaTypeName, baseUrl } = configOptions
   if (!imageNames || !Array.isArray(imageNames)) {
     throw new Error("No image names were given in gatsby image graphql plugin.")
   }
@@ -32,7 +32,7 @@ exports.createResolvers = (
         typeResolver[`${fieldName}Sharp`] = {
           type: "File",
           resolve(source) {
-            const url = source[fieldName]
+            const url = (baseUrl || "") + source[fieldName]
             if (url) {
               return createRemoteFileNode({
                 url,
