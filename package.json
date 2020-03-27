@@ -1,0 +1,18 @@
+{
+  "name": "gatsby-image-graphql-schema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gatsby-node.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntoineBourin/gatsby-image-graphql-schema"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-image"
+  ],
+  "author": "Antoine Bourin",
+  "license": "ISC"
+}
