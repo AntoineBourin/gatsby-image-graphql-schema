@@ -1,7 +1,7 @@
 {
   "name": "gatsby-image-graphql-schema",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Generate file nodes on images from GraphQL schema",
   "main": "gatsby-node.js",
   "scripts": {},
   "repository": {
