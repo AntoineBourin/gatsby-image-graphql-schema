@@ -1,5 +1,27 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
+/**
+ * Check if current fieldName is type or name member
+ * @param imageNames
+ * @param typeName
+ * @param fieldName
+ * @returns {*|boolean}
+ */
+const isTypeAndNameMember = (imageNames, typeName, fieldName) => {
+  return imageNames && !!imageNames.find(imageName => {
+    const fieldParts = imageName.split(".");
+    if (fieldParts.length > 1
+      && fieldParts[0] === typeName
+      && fieldParts[1] === fieldName
+    ) {
+      return true;
+    } else if (fieldParts[0] === fieldName) {
+      return true;
+    }
+    return false;
+  });
+}
+
 exports.createResolvers = (
   { actions, cache, createNodeId, createResolvers, store, reporter },
   configOptions
@@ -28,7 +50,7 @@ exports.createResolvers = (
       (typeEntry && typeEntry.getFields && typeEntry.getFields()) || {}
     const typeResolver = {}
     Object.keys(typeFields).forEach(fieldName => {
-      if (imageNames.includes(fieldName)) {
+      if (isTypeAndNameMember(imageNames, typeName, fieldName)) {
         typeResolver[`${fieldName}Sharp`] = {
           type: "File",
           resolve(source) {

@@ -17,15 +17,19 @@ Update and configure plugin in your `gatsby-config` file :
 {
   resolve: "gatsby-image-graphql-schema",
   options: {
-    imageNames: ["url"],
+    imageNames: ["publicURL", "strapi_UploadFile.url"],
     schemaTypeName: "drupal",
   },
 },
 ```
-- `imageNames` is the names of the fields where your images url appears in your graphQL schema
+- `imageNames` is the name of the fields where your images url appears in your graphQL schema. With a dot separation ("."), you can
+set a specific parent type for field name. In this example, the plugin will take all `publicURL` field names and only `url` field name with
+`strapi_UploadFile` parent type
+
 - `schemaTypeName` is the root schema type name where the plugin will search in to transform your images.
 (you must have the same value as the `typeName` options in the `gatsby-source-graphql` plugin).
-- `baseUrl` [optional] this can be add to the plugin options to concatenate imageUrl with an existing website 
+
+- `baseUrl` [optional] this plugin option allows you to concatenate image url with a base path 
 (usefull when you only have the name of your images in your query result)
 
 ## Result
